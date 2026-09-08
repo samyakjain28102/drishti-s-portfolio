@@ -1041,8 +1041,8 @@ button {
   }
 
   .polaroid-stack {
-    height: 380px;
-    transform: scale(0.9);
+    height: 520px;
+    transform: scale(0.85);
     transform-origin: top center;
     margin: 0 auto;
   }
@@ -1216,16 +1216,33 @@ button {
     padding: 84px 16px 48px;
   }
 
-  /* Home Page Mobile Alignment (Figma 211:1584) */
+  /* Home Page Mobile Alignment */
   .hero {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
   .hero-copy {
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-title {
+    text-align: center;
+    width: 100%;
+    align-items: center;
+  }
+
+  .hero-line {
+    justify-content: center;
+    width: 100%;
   }
 
   .hero-line-1,
@@ -1245,12 +1262,23 @@ button {
     gap: 10px;
     margin-top: 20px;
     flex-direction: row;
+    justify-content: center;
     width: 100%;
   }
 
   .hero-actions .btn {
     padding: 10px 20px;
     font-size: 13px;
+  }
+
+  .hero-note {
+    align-items: center;
+    text-align: center;
+    margin: 20px auto 0;
+  }
+
+  .hand-arrow {
+    margin: 0 auto;
   }
 
   .hero-art {
@@ -1263,11 +1291,11 @@ button {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
-    padding: 16px 8px;
+    /* padding: 16px 8px; */
     background: #fff;
     border-radius: 16px;
-    margin-top: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-top: 10px;
+    box-shadow: 0 2px 8px #00000014;
   }
 
   .stat {
@@ -1336,7 +1364,7 @@ button {
   .polaroid-stack {
     width: 100%;
     max-width: 300px;
-    height: 240px;
+    height: 320px;
     transform: none;
     margin: 0 auto;
   }
@@ -1344,7 +1372,7 @@ button {
   .polaroid-shot.shot-b { width: 130px; }
   .polaroid-shot.shot-a { top: 30px; left: 30px; width: 140px; }
   .polaroid-shot.shot-c { top: 75px; left: 65px; width: 150px; }
-  .polaroid-shot.shot-d { top: 130px; left: 110px; width: 160px; }
+  .polaroid-shot.shot-d { top: 125px; left: 105px; width: 160px; }
 
   .home-footer-copy-wrap {
     flex-direction: column;
@@ -1470,6 +1498,11 @@ button {
    Splash Screen & Entrance Animations
    ========================================================================== */
 
+body.splash-active {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
 .splash-overlay {
   position: fixed;
   inset: 0;
@@ -1482,44 +1515,276 @@ button {
   cursor: pointer;
   user-select: none;
   overflow: hidden;
+  touch-action: none;
   transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
               filter 0.5s ease;
 }
 
-.splash-container {
-  width: 100%;
-  height: 100%;
+/* Scene container — sized to viewport */
+.splash-scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
   max-width: 100vw;
   max-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  box-sizing: border-box;
   overflow: hidden;
 }
 
-.splash-inline-svg,
-.splash-img-fallback {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Each splash element is absolutely positioned within the scene */
+.splash-el {
+  position: absolute;
 }
 
-.splash-inline-svg svg,
-.splash-img-fallback {
+.splash-svg-wrap {
   width: 100%;
   height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
 }
 
+.splash-svg-wrap svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* =============================================
+   Element Positions — Centered Character & Non-Overlapping SVGs
+   Girl character strictly centered horizontally (left: 50%; transform: translateX(-68%)).
+   Straightener (.sp-glasses) and other items scaled down to prevent any overlap.
+   ============================================= */
+
+/* Character — strictly centered horizontally */
+.sp-character {
+  width: 32vw;
+  max-width: 440px;
+  max-height: 74vh;
+  left: 50%;
+  top: 12vh;
+  transform: translateX(-68%);
+  z-index: 3;
+}
+
+/* Star (Group 19) — top-left */
+.sp-star {
+  width: 4.5%;
+  left: 10%;
+  top: 5%;
+  z-index: 5;
+}
+
+/* Badge 2 / Venn Diagram (Group 21) — positioned down between girl and sticky notes */
+.sp-badge2 {
+  width: 7.5%;
+  left: 21%;
+  top: 14%;
+  z-index: 5;
+}
+
+/* Chocolate (Group 9) — mid-left */
+.sp-chocolate {
+  width: 7.5%;
+  left: 12%;
+  top: 34%;
+  z-index: 5;
+}
+
+/* Teddy (Group 5) — center-far-left */
+.sp-teddy {
+  width: 7.5%;
+  left: 3%;
+  top: 50%;
+  z-index: 5;
+}
+
+/* Straightener / Glasses (Group 22) — scaled down to 6.5% to prevent overlap */
+.sp-glasses {
+  width: 6.5%;
+  left: 13%;
+  top: 67%;
+  z-index: 5;
+}
+
+/* Price Tag (Group 17) — bottom-far-left */
+.sp-tag {
+  width: 4%;
+  left: 5%;
+  top: 84%;
+  z-index: 5;
+}
+
+/* Sign "mai apni favourite hu" (Group 16) — top-center above head */
+.sp-book {
+  width: 12%;
+  left: 33%;
+  top: 3.5%;
+  z-index: 5;
+}
+
+/* Laptop (Group 2) — top-right clear of sign & character */
+.sp-laptop {
+  width: 15%;
+  left: 58%;
+  top: 14%;
+  z-index: 5;
+}
+
+/* Camera (Group 3) — top-far-right */
+.sp-camera {
+  width: 7.5%;
+  left: 76%;
+  top: 8%;
+  z-index: 5;
+}
+
+/* Plant (Group 4) — mid-right */
+.sp-plant {
+  width: 11%;
+  left: 77%;
+  top: 30%;
+  z-index: 2;
+}
+
+/* Badge (Group 15) — center-far-right */
+.sp-badge {
+  width: 8.5%;
+  left: 87%;
+  top: 50%;
+  z-index: 5;
+}
+
+/* Pencil Cup (Group 14) — lower-mid-right */
+.sp-pencilcup {
+  width: 7.5%;
+  left: 72%;
+  top: 62%;
+  z-index: 5;
+}
+
+/* Coffee Cup (Group 7) — lower-far-right */
+.sp-cup {
+  width: 7%;
+  left: 87%;
+  top: 72%;
+  z-index: 5;
+}
+
+/* Palette (Group 6) — bottom-right */
+.sp-palette {
+  width: 7.5%;
+  left: 75%;
+  top: 84%;
+  z-index: 5;
+}
+
+/* =============================================
+   Shake Animations — 4 variants applied to
+   different elements for visual diversity
+   ============================================= */
+
+/* Shake variant 1: character wobble (preserves translateX(-68%) horizontal centering) */
+.sp-character.shake {
+  animation: shakeCharacter 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Shake variant 2: bounce-up with rotation */
+.sp-camera.shake,
+.sp-laptop.shake,
+.sp-star.shake {
+  animation: shakeBounce 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Shake variant 3: sway side-to-side */
+.sp-teddy.shake,
+.sp-plant.shake,
+.sp-book.shake,
+.sp-glasses.shake {
+  animation: shakeSway 0.75s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Shake variant 4: scale-pop jitter */
+.sp-pencilcup.shake,
+.sp-palette.shake,
+.sp-chocolate.shake,
+.sp-tag.shake {
+  animation: shakeJitter 0.65s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Shake variant 5: float wobble */
+.sp-cup.shake,
+.sp-badge.shake,
+.sp-badge2.shake {
+  animation: shakeFloat 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* --- Keyframes --- */
+
+@keyframes shakeCharacter {
+  0%   { transform: translateX(-68%) translate3d(0, 0, 0) rotate(0deg); }
+  15%  { transform: translateX(-68%) translate3d(-8px, 0, 0) rotate(-2deg); }
+  30%  { transform: translateX(-68%) translate3d(8px, 0, 0) rotate(2deg); }
+  45%  { transform: translateX(-68%) translate3d(-5px, 0, 0) rotate(-1.5deg); }
+  60%  { transform: translateX(-68%) translate3d(5px, 0, 0) rotate(1.5deg); }
+  75%  { transform: translateX(-68%) translate3d(-2px, 0, 0) rotate(-0.5deg); }
+  90%  { transform: translateX(-68%) translate3d(2px, 0, 0) rotate(0.5deg); }
+  100% { transform: translateX(-68%) translate3d(0, 0, 0) rotate(0deg); }
+}
+
+@keyframes shakeWobble {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  15%  { transform: translate3d(-8px, 0, 0) rotate(-2deg); }
+  30%  { transform: translate3d(8px, 0, 0) rotate(2deg); }
+  45%  { transform: translate3d(-5px, 0, 0) rotate(-1.5deg); }
+  60%  { transform: translate3d(5px, 0, 0) rotate(1.5deg); }
+  75%  { transform: translate3d(-2px, 0, 0) rotate(-0.5deg); }
+  90%  { transform: translate3d(2px, 0, 0) rotate(0.5deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+
+@keyframes shakeBounce {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  15%  { transform: translate3d(4px, -10px, 0) rotate(4deg) scale(1.05); }
+  30%  { transform: translate3d(-4px, 3px, 0) rotate(-4deg) scale(0.96); }
+  45%  { transform: translate3d(3px, -6px, 0) rotate(2.5deg) scale(1.03); }
+  60%  { transform: translate3d(-2px, 2px, 0) rotate(-1.5deg) scale(0.98); }
+  75%  { transform: translate3d(1px, -2px, 0) rotate(1deg) scale(1.01); }
+  90%  { transform: translate3d(-1px, 0, 0) rotate(-0.5deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+
+@keyframes shakeSway {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  15%  { transform: translate3d(6px, -2px, 0) rotate(4deg); }
+  30%  { transform: translate3d(-6px, 2px, 0) rotate(-4deg); }
+  45%  { transform: translate3d(4px, -1px, 0) rotate(2.5deg); }
+  60%  { transform: translate3d(-3px, 1px, 0) rotate(-2deg); }
+  75%  { transform: translate3d(2px, 0, 0) rotate(1deg); }
+  90%  { transform: translate3d(-1px, 0, 0) rotate(-0.5deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+
+@keyframes shakeJitter {
+  0%   { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  15%  { transform: translate3d(-4px, -8px, 0) scale(1.06) rotate(-3deg); }
+  30%  { transform: translate3d(4px, 2px, 0) scale(0.95) rotate(3deg); }
+  45%  { transform: translate3d(-3px, -4px, 0) scale(1.03) rotate(-2deg); }
+  60%  { transform: translate3d(2px, 1px, 0) scale(0.98) rotate(1.5deg); }
+  75%  { transform: translate3d(-1px, -1px, 0) scale(1.01) rotate(-1deg); }
+  90%  { transform: translate3d(1px, 0, 0) scale(0.99) rotate(0.5deg); }
+  100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+}
+
+@keyframes shakeFloat {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  15%  { transform: translate3d(-4px, 6px, 0) rotate(-4deg) scale(1.04); }
+  30%  { transform: translate3d(5px, -4px, 0) rotate(4deg) scale(0.96); }
+  45%  { transform: translate3d(-3px, 3px, 0) rotate(-2.5deg) scale(1.02); }
+  60%  { transform: translate3d(3px, -2px, 0) rotate(1.5deg) scale(0.98); }
+  75%  { transform: translate3d(-1px, 1px, 0) rotate(-1deg) scale(1.01); }
+  90%  { transform: translate3d(1px, 0, 0) rotate(0.5deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+
+/* --- Hint pill --- */
 .splash-hint {
   position: absolute;
   bottom: 40px;
@@ -1537,6 +1802,7 @@ button {
   animation: splashPulse 2s infinite ease-in-out;
   transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
+  z-index: 10;
 }
 
 .splash-hint-hide {
@@ -1555,130 +1821,12 @@ button {
   }
 }
 
-.splash-active-vibrate {
-  animation: splashBgFlash 0.75s ease-out;
-}
-
-@keyframes splashBgFlash {
-  0% { background: #FFEDED; }
-  25% { background: #FFD6DC; }
-  50% { background: #FCE8EC; }
-  100% { background: #FFEDED; }
-}
-
-/* Master Container / Image / SVG Vibration Animation */
-.vibrate-elements {
-  animation: vibrateMaster 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
-}
-
-@keyframes vibrateMaster {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-  10% { transform: translate(-14px, 10px) scale(1.04) rotate(-3deg); }
-  20% { transform: translate(14px, -10px) scale(0.96) rotate(3deg); }
-  30% { transform: translate(-12px, -8px) scale(1.05) rotate(-2.5deg); }
-  40% { transform: translate(10px, 8px) scale(0.95) rotate(2.5deg); }
-  50% { transform: translate(-8px, 6px) scale(1.03) rotate(-2deg); }
-  60% { transform: translate(8px, -5px) scale(0.97) rotate(2deg); }
-  70% { transform: translate(-5px, 4px) scale(1.02) rotate(-1deg); }
-  80% { transform: translate(4px, -3px) scale(0.99) rotate(1deg); }
-  90% { transform: translate(-2px, 1px) scale(1) rotate(-0.5deg); }
-  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
-}
-
-/* Staggered Individual Vector Paths & Groups Vibration */
-.vibrate-elements path,
-.vibrate-elements g,
-.vibrate-elements circle,
-.vibrate-elements rect,
-.vibrate-elements polygon {
-  transform-box: fill-box;
-  transform-origin: center center;
-  animation: vibrateItemKeyframe 0.65s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
-}
-
-.vibrate-elements path:nth-child(2n),
-.vibrate-elements g:nth-child(2n) {
-  animation-name: vibrateItemAlt1 !important;
-  animation-duration: 0.6s !important;
-  animation-delay: 0.02s !important;
-}
-
-.vibrate-elements path:nth-child(3n),
-.vibrate-elements g:nth-child(3n) {
-  animation-name: vibrateItemAlt2 !important;
-  animation-duration: 0.7s !important;
-  animation-delay: 0.04s !important;
-}
-
-.vibrate-elements path:nth-child(5n),
-.vibrate-elements g:nth-child(5n) {
-  animation-name: vibrateItemAlt3 !important;
-  animation-duration: 0.55s !important;
-  animation-delay: 0.01s !important;
-}
-
-.vibrate-elements path:nth-child(7n),
-.vibrate-elements g:nth-child(7n) {
-  animation-name: vibrateItemAlt4 !important;
-  animation-duration: 0.65s !important;
-  animation-delay: 0.03s !important;
-}
-
-@keyframes vibrateItemKeyframe {
-  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  15% { transform: translate(-12px, 8px) rotate(-4deg) scale(1.08); }
-  30% { transform: translate(12px, -8px) rotate(4deg) scale(0.92); }
-  45% { transform: translate(-9px, -6px) rotate(-3deg) scale(1.05); }
-  60% { transform: translate(7px, 5px) rotate(3deg) scale(0.95); }
-  75% { transform: translate(-4px, 3px) rotate(-1.5deg) scale(1.02); }
-  90% { transform: translate(2px, -1px) rotate(0.8deg); }
-  100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-}
-
-@keyframes vibrateItemAlt1 {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  20% { transform: translate(14px, 6px) rotate(5deg) scale(1.1); }
-  40% { transform: translate(-12px, -10px) rotate(-4deg) scale(0.9); }
-  60% { transform: translate(8px, 5px) rotate(3deg) scale(1.05); }
-  80% { transform: translate(-4px, -2px) rotate(-1.5deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
-}
-
-@keyframes vibrateItemAlt2 {
-  0% { transform: translate(0, 0) scale(1); }
-  20% { transform: translate(-10px, -12px) scale(1.12) rotate(-4deg); }
-  40% { transform: translate(12px, 8px) scale(0.88) rotate(4deg); }
-  60% { transform: translate(-6px, 8px) scale(1.06) rotate(-2.5deg); }
-  80% { transform: translate(4px, -3px) scale(0.97); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-
-@keyframes vibrateItemAlt3 {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(14px, -8px) rotate(-5deg) scale(1.08); }
-  50% { transform: translate(-10px, 9px) rotate(5deg) scale(0.92); }
-  75% { transform: translate(5px, -4px) rotate(-2deg) scale(1.03); }
-  100% { transform: translate(0, 0) rotate(0deg); }
-}
-
-@keyframes vibrateItemAlt4 {
-  0% { transform: translate(0, 0); }
-  15% { transform: translate(-12px, 6px) rotate(4deg); }
-  35% { transform: translate(10px, -12px) rotate(-5deg); }
-  55% { transform: translate(-9px, -5px) rotate(3deg); }
-  75% { transform: translate(6px, 8px) rotate(-2deg); }
-  100% { transform: translate(0, 0); }
-}
-
-/* Splash Exit animation */
+/* Splash Exit animation — zero spatial scaling to prevent position shift */
 .splash-exit {
   opacity: 0;
-  transform: scale(1.06);
-  filter: blur(8px);
+  filter: blur(6px);
   pointer-events: none;
-  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              filter 0.5s ease;
+  transition: opacity 0.5s ease-out, filter 0.5s ease-out;
 }
 
 /* Home Page Entrance Animation */
@@ -1697,4 +1845,30 @@ button {
     transform: translateY(0) scale(1);
     filter: blur(0);
   }
+}
+
+/* --- Splash responsive --- */
+@media (max-width: 768px) {
+  .splash-overlay,
+  .splash-el,
+  .splash-el.shake,
+  .splash-hint {
+    animation: none !important;
+    transition: none !important;
+  }
+  .sp-character { width: 52%; left: 50%; top: 12vh; transform: translateX(-68%); }
+  .sp-camera { width: 11%; }
+  .sp-teddy { width: 11%; }
+  .sp-pencilcup { width: 13%; }
+  .sp-laptop { width: 16%; }
+  .sp-palette { width: 11%; }
+  .sp-chocolate { width: 12%; }
+  .sp-cup { width: 11%; left: 84%; }
+  .sp-plant { width: 17%; }
+  .sp-tag { width: 7%; }
+  .sp-book { width: 13%; }
+  .sp-badge { width: 13%; left: 84%; }
+  .sp-glasses { width: 10%; }
+  .sp-badge2 { width: 12%; }
+  .sp-star { width: 7%; }
 }
