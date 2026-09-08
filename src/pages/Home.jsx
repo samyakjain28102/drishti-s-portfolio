@@ -24,11 +24,11 @@ export default function Home() {
         <div className="hero-copy">
           <span className="chip">I am a Designer</span>
           <h1 className="hero-title">
-            You found Me!
-            <br />
-            Hi, I’m <span className="script pink">Drishti</span>
-            <br />
-            <span className="hero-title-text">Welcome to my little corner</span>
+            <span className="hero-line hero-line-1">You found Me!</span>
+            <span className="hero-line hero-line-2">
+              Hi, I’m <span className="script pink">Drishti</span>
+            </span>
+            <span className="hero-line hero-line-3">Welcome to my little corner</span>
           </h1>
           <div className="hero-actions">
             <a className="btn btn-pink" href="#/work">
@@ -47,7 +47,7 @@ export default function Home() {
         </div>
         <div className="hero-art">
           <img className="hero-scene" src={asset("hero-desk.png")} alt="" />
-          <img className="hero-character" src={asset("hero-character.png")} alt="Illustration of Drishti" />
+          <img className="hero-character" src={asset("Group 25.svg")} alt="Illustration of Drishti" />
         </div>
       </section>
 
@@ -126,21 +126,23 @@ export default function Home() {
 
       <section className="home-footer">
         <div className="polaroid-stack" aria-hidden="true">
-          <img className="polaroid-shot shot-a" src={asset("polaroid-home-1.png")} alt="" />
-          <img className="polaroid-shot shot-b" src={asset("polaroid-home-4.png")} alt="" />
-          <img className="polaroid-shot shot-c" src={asset("polaroid-home-2.png")} alt="" />
-          <img className="polaroid-shot shot-d" src={asset("polaroid-home-3.png")} alt="" />
+          <img className="polaroid-shot shot-a" src={asset("Frame 694.svg")} alt="" />
+          <img className="polaroid-shot shot-b" src={asset("Frame 698.svg")} alt="" />
+          <img className="polaroid-shot shot-c" src={asset("Frame 697.svg")} alt="" />
+          <img className="polaroid-shot shot-d" src={asset("Frame 696.svg")} alt="" />
         </div>
-        <div className="home-footer-copy">
-          <p>
-            When I’m not designing, you’ll probably find me dancing, baking, cooking, exploring, or noticing something I’ll eventually turn into an idea.
-          </p>
-          <a className="btn btn-lilac" href="#/about">
-            Know More
-          </a>
-        </div>
-        <div className="hmm-wrap">
-          <img src={asset("badge-hmm.png")} alt="" />
+        <div className="home-footer-copy-wrap">
+          <div className="home-footer-copy">
+            <p>
+              When I’m not designing, you’ll probably find me dancing, baking, cooking, exploring, or noticing something I’ll eventually turn into an idea.
+            </p>
+            <a className="btn btn-lilac" href="#/about">
+              Know More
+            </a>
+          </div>
+          <div className="hmm-wrap">
+            <img src={asset("Frame 1000003422.svg")} alt="turning 'hmm...' into 'oh'" />
+          </div>
         </div>
         <img className="tools-row" src={asset("tools.png")} alt="InDesign, Premiere, Photoshop, Illustrator, Figma, and Framer" />
       </section>
@@ -151,6 +153,7 @@ export default function Home() {
           src={asset("companies.png")}
           alt="Darkrelay, Fox Clues, Outstory India, The Sweep, Winkget"
         />
+        <div className="companies-divider" />
         <p className="past-label">Past Associations</p>
       </section>
     </div>

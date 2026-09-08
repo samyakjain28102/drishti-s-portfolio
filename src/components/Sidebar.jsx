@@ -4,7 +4,6 @@ const links = [
   { id: "home", label: "Home", href: "#/home" },
   { id: "work", label: "Work", href: "#/work" },
   { id: "about", label: "About", href: "#/about" },
-  { id: "contact", label: "Contact", href: "#/contact" },
 ];
 
 export default function Sidebar({ current, open, onClose }) {
@@ -34,12 +33,18 @@ export default function Sidebar({ current, open, onClose }) {
         <img className="badge-shade" src={asset("badge-shade.png")} alt="A Shade Apart" />
       </div>
       <div className="socials">
-        <a className="social" href="mailto:hello@drishtijain.com" aria-label="Email">
+        <a
+          className="social"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=drishtij845@gmail.com"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Email"
+        >
           <img src={asset("icon-gmail.svg")} alt="" />
         </a>
         <a
           className="social social-dark"
-          href="https://www.behance.net/"
+          href="https://www.behance.net/drishtijain22"
           target="_blank"
           rel="noreferrer"
           aria-label="Behance"
@@ -48,7 +53,7 @@ export default function Sidebar({ current, open, onClose }) {
         </a>
         <a
           className="social social-linkedin"
-          href="https://www.linkedin.com/"
+          href="https://www.linkedin.com/in/drishti-jain-93b42b281"
           target="_blank"
           rel="noreferrer"
           aria-label="LinkedIn"

@@ -3,13 +3,13 @@ import Sidebar from "./components/Sidebar.jsx";
 import Home from "./pages/Home.jsx";
 import Work from "./pages/Work.jsx";
 import About from "./pages/About.jsx";
-import Contact from "./pages/Contact.jsx";
+
+import { asset } from "./asset.js";
 
 const pages = {
   home: Home,
   work: Work,
   about: About,
-  contact: Contact,
 };
 
 function pageFromHash() {
@@ -35,14 +35,23 @@ export default function App() {
 
   return (
     <div className="app">
-      <button
-        className="menu-toggle"
-        type="button"
-        aria-label="Open menu"
-        onClick={() => setMenuOpen(true)}
-      >
-        Menu
-      </button>
+      <header className="mobile-header">
+        <div className="mobile-profile">
+          <img src={asset("avatar.png")} alt="" className="mobile-avatar" />
+          <span className="script mobile-name">Drishti Jain</span>
+        </div>
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label="Toggle menu"
+          onClick={() => setMenuOpen((prev) => !prev)}
+        >
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1.5H17M1 7H17M1 12.5H17" stroke="#393330" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+          <span>Menu</span>
+        </button>
+      </header>
       {menuOpen ? (
         <button
           className="backdrop"

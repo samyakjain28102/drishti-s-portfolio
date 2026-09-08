@@ -34,8 +34,7 @@ export default function About() {
           Hi, I’m Drishti a design student, curious learner and someone who genuinely enjoys making things.
         </p>
         <div className="thats-me">
-          <img src={asset("badge-thats-me.png")} alt="" />
-          <span className="script">That’s me</span>
+          <img src={asset("Group 38.svg")} alt="That’s me" />
         </div>
         <div className="hobby-grid">
           {hobbies.map((hobby) => (
