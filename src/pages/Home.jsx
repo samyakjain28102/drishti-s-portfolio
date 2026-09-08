@@ -28,7 +28,7 @@ export default function Home() {
             <br />
             Hi, I’m <span className="script pink">Drishti</span>
             <br />
-            Welcome to my little corner
+            <span className="hero-title-text">Welcome to my little corner</span>
           </h1>
           <div className="hero-actions">
             <a className="btn btn-pink" href="#/work">
@@ -40,7 +40,9 @@ export default function Home() {
           </div>
           <div className="hero-note">
             <img src={asset("arrow-hand.svg")} alt="" className="hand-arrow" />
-            <p className="script note-text">Let’s create something beautiful together!</p>
+            <p className="script note-text">
+              Let’s create something<br />beautiful together!
+            </p>
           </div>
         </div>
         <div className="hero-art">

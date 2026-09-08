@@ -19,7 +19,7 @@ export default function About() {
         <h1>
           What makes me,
           <br />
-          <span className="script pink huge">Me</span>
+          <span className="script pink me-text">Me</span>
         </h1>
       </div>
 
