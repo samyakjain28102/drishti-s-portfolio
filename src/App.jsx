@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar.jsx";
 import Home from "./pages/Home.jsx";
 import Work from "./pages/Work.jsx";
 import About from "./pages/About.jsx";
+import Splash from "./components/Splash.jsx";
 
 import { asset } from "./asset.js";
 
@@ -20,6 +21,8 @@ function pageFromHash() {
 export default function App() {
   const [page, setPage] = useState(pageFromHash);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
+  const [homeAnimating, setHomeAnimating] = useState(false);
 
   useEffect(() => {
     const onHash = () => {
@@ -31,10 +34,22 @@ export default function App() {
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+    setHomeAnimating(true);
+    // Remove entrance animation class after animation completes
+    setTimeout(() => {
+      setHomeAnimating(false);
+    }, 1000);
+  };
+
   const Page = pages[page];
 
   return (
     <div className="app">
+      {showSplash ? (
+        <Splash onComplete={handleSplashComplete} />
+      ) : null}
       <header className="mobile-header">
         <div className="mobile-profile">
           <img src={asset("avatar.png")} alt="" className="mobile-avatar" />
@@ -61,9 +76,10 @@ export default function App() {
         />
       ) : null}
       <Sidebar current={page} open={menuOpen} onClose={() => setMenuOpen(false)} />
-      <main className="main">
+      <main className={`main ${homeAnimating ? "page-enter-animation" : ""}`}>
         <Page />
       </main>
     </div>
   );
 }
+
