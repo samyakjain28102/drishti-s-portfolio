@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar.jsx";
 import Home from "./pages/Home.jsx";
 import Work from "./pages/Work.jsx";
-import Gallery from "./pages/Gallery.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 
 const pages = {
   home: Home,
   work: Work,
-  gallery: Gallery,
   about: About,
   contact: Contact,
 };

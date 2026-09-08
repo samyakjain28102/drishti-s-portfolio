@@ -1,19 +1,18 @@
 import { asset } from "../asset.js";
 
 const projects = [
-  { title: "Marketing Assets", category: "Posts" },
-  { title: "Senior Sakshi", category: "Branding" },
-  { title: "Magazines", category: "Publication Design" },
-  { title: "Thinkly", category: "Extension" },
-  { title: "Aaurix Turf", category: "Website" },
+  { title: "Thinkly", category: "Extension", image: "project-thinkly.png" },
+  { title: "Senior Sakshi", category: "Branding", image: "project-senior-sakshi.png" },
+  { title: "Magazines", category: "Publication Design", image: "project-magazines.png" },
+  { title: "Marketing Assets", category: "Posts", image: "project-marketing-assets.png" },
 ];
 
 const skills = [
   { name: "UI/UX", color: "#e6d8ed" },
-  { name: "Infographic", color: "#e9dbeb" },
   { name: "Brand Identity", color: "#fee4db" },
   { name: "Social Media", color: "#e2ebf3" },
   { name: "Publication", color: "#e5ead4" },
+  { name: "Infographics", color: "#e6d8ed" },
   { name: "Visual", color: "#fce4c4" },
   { name: "Illustration", color: "#fee2d0" },
 ];
@@ -45,21 +44,26 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-art">
-          <img src={asset("hero.png")} alt="Illustration of Drishti at her desk" />
+          <img className="hero-scene" src={asset("hero-desk.png")} alt="" />
+          <img className="hero-character" src={asset("hero-character.png")} alt="Illustration of Drishti" />
         </div>
       </section>
 
       <section className="stats" aria-label="Highlights">
         <div className="stat">
           <div className="stat-top">
-            <span className="stat-square" />
+            <img className="stat-icon" src={asset("stat-palette.png")} alt="" />
             <strong>4+</strong>
           </div>
-          <p>Design Disciplines Explored</p>
+          <p>
+            Design Disciplines
+            <br />
+            Explored
+          </p>
         </div>
         <div className="stat">
           <div className="stat-top">
-            <span className="stat-square" />
+            <img className="stat-icon" src={asset("stat-folder.png")} alt="" />
             <strong>7+</strong>
           </div>
           <p>
@@ -70,7 +74,7 @@ export default function Home() {
         </div>
         <div className="stat">
           <div className="stat-top">
-            <span className="stat-square" />
+            <img className="stat-icon" src={asset("stat-chat.png")} alt="" />
             <strong>5+</strong>
           </div>
           <p>
@@ -80,7 +84,7 @@ export default function Home() {
           </p>
         </div>
         <div className="stat stat-wide">
-          <p>a collection of things I’ve designed, explored and learned along the way.</p>
+          <p>a collection of things I've designed, explored and learned along the way.</p>
           <img src={asset("swatch.svg")} alt="" className="swatch" />
         </div>
       </section>
@@ -95,22 +99,19 @@ export default function Home() {
         <div className="project-row">
           {projects.map((project) => (
             <a className="project-card" href="#/work" key={project.title}>
-              <div className="project-thumb" />
+              <div className="project-thumb">
+                <img src={asset(project.image)} alt="" />
+              </div>
               <div className="project-meta">
                 <div>
                   <h3>{project.title}</h3>
                   <p>{project.category}</p>
                 </div>
-                <img src={asset("arrow-card.svg")} alt="" width="29" height="29" />
+                <img src={asset("arrow-card.svg")} alt="" width="36" height="36" />
               </div>
             </a>
           ))}
         </div>
-      </section>
-
-      <section className="companies">
-        <h2>Companies I’ve worked with</h2>
-        <img className="company-bar" src={asset("companies.png")} alt="Darkrelay, Fox Clues, Outstory India, The Sweep, Winkget" />
       </section>
 
       <section className="skills" aria-label="Design disciplines">
@@ -122,7 +123,12 @@ export default function Home() {
       </section>
 
       <section className="home-footer">
-        <img className="desk-art" src={asset("footer-desk.png")} alt="" />
+        <div className="polaroid-stack" aria-hidden="true">
+          <img className="polaroid-shot shot-a" src={asset("polaroid-home-1.png")} alt="" />
+          <img className="polaroid-shot shot-b" src={asset("polaroid-home-4.png")} alt="" />
+          <img className="polaroid-shot shot-c" src={asset("polaroid-home-2.png")} alt="" />
+          <img className="polaroid-shot shot-d" src={asset("polaroid-home-3.png")} alt="" />
+        </div>
         <div className="home-footer-copy">
           <p>
             When I’m not designing, you’ll probably find me dancing, baking, cooking, exploring, or noticing something I’ll eventually turn into an idea.
@@ -133,9 +139,17 @@ export default function Home() {
         </div>
         <div className="hmm-wrap">
           <img src={asset("badge-hmm.png")} alt="" />
-          <span className="script hmm-label">turning “hmm…” into “oh”</span>
         </div>
-        <img className="tools-row" src={asset("tools.png")} alt="Photoshop, Illustrator, Figma, and Framer" />
+        <img className="tools-row" src={asset("tools.png")} alt="InDesign, Premiere, Photoshop, Illustrator, Figma, and Framer" />
+      </section>
+
+      <section className="companies">
+        <img
+          className="company-bar"
+          src={asset("companies.png")}
+          alt="Darkrelay, Fox Clues, Outstory India, The Sweep, Winkget"
+        />
+        <p className="past-label">Past Associations</p>
       </section>
     </div>
   );

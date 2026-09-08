@@ -3,7 +3,6 @@ import { asset } from "../asset.js";
 const links = [
   { id: "home", label: "Home", href: "#/home" },
   { id: "work", label: "Work", href: "#/work" },
-  { id: "gallery", label: "Gallery", href: "#/gallery" },
   { id: "about", label: "About", href: "#/about" },
   { id: "contact", label: "Contact", href: "#/contact" },
 ];
@@ -36,7 +35,7 @@ export default function Sidebar({ current, open, onClose }) {
       </div>
       <div className="socials">
         <a className="social" href="mailto:hello@drishtijain.com" aria-label="Email">
-          <img src={asset("icon-gmail.svg")} alt="" width="35" height="35" />
+          <img src={asset("icon-gmail.svg")} alt="" />
         </a>
         <a
           className="social social-dark"
@@ -45,7 +44,7 @@ export default function Sidebar({ current, open, onClose }) {
           rel="noreferrer"
           aria-label="Behance"
         >
-          <img src={asset("icon-behance.svg")} alt="" width="67" height="67" />
+          <img src={asset("icon-behance.svg")} alt="" />
         </a>
         <a
           className="social social-linkedin"
@@ -54,7 +53,7 @@ export default function Sidebar({ current, open, onClose }) {
           rel="noreferrer"
           aria-label="LinkedIn"
         >
-          <img src={asset("icon-linkedin.svg")} alt="" width="67" height="67" />
+          <img src={asset("icon-linkedin.svg")} alt="" />
         </a>
       </div>
     </aside>

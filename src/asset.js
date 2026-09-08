@@ -1,3 +1,6 @@
 export function asset(file) {
-  return `${import.meta.env.BASE_URL}assets/${file}`;
+  const base = import.meta.env.BASE_URL.endsWith("/")
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
+  return `${base}assets/${file}`;
 }
