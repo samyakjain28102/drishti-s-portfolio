@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { asset } from "../asset.js";
 
 const filters = ["My Fav", "Me", "Food", "Nature", "My Style", "My Journey", "My People"];
 const rotations = [-4, 3, -2, 5, -5, 2, 4, -3];
@@ -37,7 +38,7 @@ export default function Gallery() {
             key={shot.id}
             style={{ transform: `rotate(${shot.rotate}deg)` }}
           >
-            <img src="/assets/polaroid.jpg" alt={`${active} photo`} />
+            <img src={asset("polaroid.jpg")} alt={`${active} photo`} />
             <figcaption className="script">{shot.caption}</figcaption>
           </figure>
         ))}

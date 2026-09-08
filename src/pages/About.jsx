@@ -1,3 +1,5 @@
+import { asset } from "../asset.js";
+
 const hobbies = [
   { name: "Design", color: "#e6d8ed" },
   { name: "Draw", color: "#fee4db" },
@@ -20,7 +22,7 @@ export default function About() {
           <span className="script pink huge">Me</span>
         </h1>
         <div className="about-art-wrap">
-          <img className="about-art" src="/assets/about-character.png" alt="Illustrated portrait of Drishti" />
+          <img className="about-art" src={asset("about-character.png")} alt="Illustrated portrait of Drishti" />
         </div>
       </div>
       <div className="about-right">
@@ -28,7 +30,7 @@ export default function About() {
           Hi, I’m Drishti a design student, curious learner and someone who genuinely enjoys making things.
         </p>
         <div className="thats-me">
-          <img src="/assets/badge-thats-me.png" alt="" />
+          <img src={asset("badge-thats-me.png")} alt="" />
           <span className="script">That’s me</span>
         </div>
         <div className="hobby-grid">
@@ -39,7 +41,7 @@ export default function About() {
             </div>
           ))}
         </div>
-        <img className="tools-row about-tools" src="/assets/tools.png" alt="Photoshop, Illustrator, Figma, and Framer" />
+        <img className="tools-row about-tools" src={asset("tools.png")} alt="Photoshop, Illustrator, Figma, and Framer" />
       </div>
     </div>
   );

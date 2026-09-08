@@ -1,3 +1,5 @@
+import { asset } from "../asset.js";
+
 const links = [
   { id: "home", label: "Home", href: "#/home" },
   { id: "work", label: "Work", href: "#/work" },
@@ -12,7 +14,7 @@ export default function Sidebar({ current, open, onClose }) {
       <div className="sidebar-card">
         <div className="sidebar-profile">
           <div className="avatar">
-            <img src="/assets/avatar.png" alt="Drishti Jain" />
+            <img src={asset("avatar.png")} alt="Drishti Jain" />
           </div>
           <p className="sidebar-name">Drishti Jain</p>
         </div>
@@ -30,11 +32,11 @@ export default function Sidebar({ current, open, onClose }) {
           ))}
         </nav>
         <div className="sidebar-rule" />
-        <img className="badge-shade" src="/assets/badge-shade.png" alt="A Shade Apart" />
+        <img className="badge-shade" src={asset("badge-shade.png")} alt="A Shade Apart" />
       </div>
       <div className="socials">
         <a className="social" href="mailto:hello@drishtijain.com" aria-label="Email">
-          <img src="/assets/icon-gmail.svg" alt="" width="35" height="35" />
+          <img src={asset("icon-gmail.svg")} alt="" width="35" height="35" />
         </a>
         <a
           className="social social-dark"
@@ -43,7 +45,7 @@ export default function Sidebar({ current, open, onClose }) {
           rel="noreferrer"
           aria-label="Behance"
         >
-          <img src="/assets/icon-behance.svg" alt="" width="67" height="67" />
+          <img src={asset("icon-behance.svg")} alt="" width="67" height="67" />
         </a>
         <a
           className="social social-linkedin"
@@ -52,7 +54,7 @@ export default function Sidebar({ current, open, onClose }) {
           rel="noreferrer"
           aria-label="LinkedIn"
         >
-          <img src="/assets/icon-linkedin.svg" alt="" width="67" height="67" />
+          <img src={asset("icon-linkedin.svg")} alt="" width="67" height="67" />
         </a>
       </div>
     </aside>

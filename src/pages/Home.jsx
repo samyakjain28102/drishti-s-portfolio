@@ -1,3 +1,5 @@
+import { asset } from "../asset.js";
+
 const projects = [
   { title: "Marketing Assets", category: "Posts" },
   { title: "Senior Sakshi", category: "Branding" },
@@ -38,12 +40,12 @@ export default function Home() {
             </a>
           </div>
           <div className="hero-note">
-            <img src="/assets/arrow-hand.svg" alt="" className="hand-arrow" />
+            <img src={asset("arrow-hand.svg")} alt="" className="hand-arrow" />
             <p className="script note-text">Let’s create something beautiful together!</p>
           </div>
         </div>
         <div className="hero-art">
-          <img src="/assets/hero.png" alt="Illustration of Drishti at her desk" />
+          <img src={asset("hero.png")} alt="Illustration of Drishti at her desk" />
         </div>
       </section>
 
@@ -79,7 +81,7 @@ export default function Home() {
         </div>
         <div className="stat stat-wide">
           <p>a collection of things I’ve designed, explored and learned along the way.</p>
-          <img src="/assets/swatch.svg" alt="" className="swatch" />
+          <img src={asset("swatch.svg")} alt="" className="swatch" />
         </div>
       </section>
 
@@ -99,7 +101,7 @@ export default function Home() {
                   <h3>{project.title}</h3>
                   <p>{project.category}</p>
                 </div>
-                <img src="/assets/arrow-card.svg" alt="" width="29" height="29" />
+                <img src={asset("arrow-card.svg")} alt="" width="29" height="29" />
               </div>
             </a>
           ))}
@@ -108,7 +110,7 @@ export default function Home() {
 
       <section className="companies">
         <h2>Companies I’ve worked with</h2>
-        <img className="company-bar" src="/assets/companies.png" alt="Darkrelay, Fox Clues, Outstory India, The Sweep, Winkget" />
+        <img className="company-bar" src={asset("companies.png")} alt="Darkrelay, Fox Clues, Outstory India, The Sweep, Winkget" />
       </section>
 
       <section className="skills" aria-label="Design disciplines">
@@ -120,7 +122,7 @@ export default function Home() {
       </section>
 
       <section className="home-footer">
-        <img className="desk-art" src="/assets/footer-desk.png" alt="" />
+        <img className="desk-art" src={asset("footer-desk.png")} alt="" />
         <div className="home-footer-copy">
           <p>
             When I’m not designing, you’ll probably find me dancing, baking, cooking, exploring, or noticing something I’ll eventually turn into an idea.
@@ -130,10 +132,10 @@ export default function Home() {
           </a>
         </div>
         <div className="hmm-wrap">
-          <img src="/assets/badge-hmm.png" alt="" />
+          <img src={asset("badge-hmm.png")} alt="" />
           <span className="script hmm-label">turning “hmm…” into “oh”</span>
         </div>
-        <img className="tools-row" src="/assets/tools.png" alt="Photoshop, Illustrator, Figma, and Framer" />
+        <img className="tools-row" src={asset("tools.png")} alt="Photoshop, Illustrator, Figma, and Framer" />
       </section>
     </div>
   );
